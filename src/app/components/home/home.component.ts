@@ -13,6 +13,7 @@ import { MatTableModule } from '@angular/material/table';
 })
 export class HomeComponent implements OnInit {
   private readonly _pensumService = inject(PensumService);
+  displayedColumns: string[] = ['code', 'name', 'score', 'state', 'prerequisite']
 
   pensum: Pensum = {} as Pensum;
 
