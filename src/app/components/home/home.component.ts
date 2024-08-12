@@ -3,6 +3,8 @@ import { Pensum } from '../../interfaces/pensum.interface';
 import { PensumService } from '../../services/pensum.service';
 import { CommonModule } from '@angular/common';
 import { SemesterComponent } from '../semester/semester.component';
+import { Semester } from '../../interfaces/semester.interface';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -14,13 +16,13 @@ import { SemesterComponent } from '../semester/semester.component';
 export class HomeComponent implements OnInit {
   private readonly _pensumService = inject(PensumService);
 
-  pensum: Pensum = {} as Pensum;
+  $pensum: Observable<Pensum> = new Observable<Pensum>();
+  $semesters: Observable<Semester[]> = new Observable<Semester[]>();
 
   constructor() {}
 
   ngOnInit(): void {
-    this._pensumService.getPensum().subscribe((pensum) => {
-      this.pensum = pensum;
-    });
+    this.$pensum = this._pensumService.getPensum();
+    this.$semesters = this._pensumService.getAllSemesters();
   }
 }

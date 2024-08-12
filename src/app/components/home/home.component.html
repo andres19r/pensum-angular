@@ -1,3 +1,3 @@
-<ng-container *ngFor="let semester of pensum.semesters">
+<ng-container *ngFor="let semester of $semesters | async">
   <app-semester [semester]="semester"></app-semester>
 </ng-container>
