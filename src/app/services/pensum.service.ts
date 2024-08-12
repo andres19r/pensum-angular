@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Pensum } from '../interfaces/pensum.interface';
-import { data } from '../data/db';
 import { Semester } from '../interfaces/semester.interface';
 import { environment } from '../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
