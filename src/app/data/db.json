@@ -6,7 +6,7 @@
   },
   "semesters": [
     {
-      "id": 1,
+      "id": "1",
       "subjects": [
         {
           "code": "IDI-162",
@@ -32,7 +32,7 @@
       ]
     },
     {
-      "id": 2,
+      "id": "2",
       "subjects": [
         {
           "code": "INF-145",
@@ -49,6 +49,64 @@
           "prerequisite": "CAL-114"
         }
       ]
+    }
+  ],
+  "subjects": [
+    {
+      "id": "INF-145",
+      "name": "Informatica I",
+      "score": 100,
+      "state": "Approved",
+      "prerequisite": "none",
+      "semester": 2
+    },
+    {
+      "id": "CAL-215",
+      "name": "Calculo II",
+      "score": 51,
+      "state": "Approved",
+      "prerequisite": "CAL-114",
+      "semester": 2
+    },
+    {
+      "id": "IDI-162",
+      "name": "Idioma I",
+      "score": 70,
+      "state": "Approved",
+      "prerequisite": "none",
+      "semester": 1
+    },
+    {
+      "id": "ALS-113",
+      "name": "Algebra Superior",
+      "score": 58,
+      "state": "Approved",
+      "prerequisite": "none",
+      "semester": 1
+    },
+    {
+      "id": "CAL-114",
+      "name": "Calculo I",
+      "score": 63,
+      "state": "Approved",
+      "prerequisite": "none",
+      "semester": 1
+    },
+    {
+      "id": "CAL-115",
+      "name": "Calculo III",
+      "state": "Approved",
+      "score": 68,
+      "prerequisite": "none",
+      "semester": 3
+    },
+    {
+      "id": "CAL-115",
+      "name": "Calculo III",
+      "state": "Approved",
+      "score": 68,
+      "prerequisite": "none",
+      "semester": 3
     }
   ]
 }
