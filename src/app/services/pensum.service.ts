@@ -4,6 +4,7 @@ import { Pensum } from '../interfaces/pensum.interface';
 import { Semester } from '../interfaces/semester.interface';
 import { environment } from '../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
+import { Subject } from '../interfaces/subject.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -23,5 +24,9 @@ export class PensumService {
 
   getSemesterById(id: number): Observable<Semester> {
     return this.http.get<Semester>(this.url + `semesters/${id}`);
+  }
+
+  createSubject(subjectToCreate: Subject) {
+    return this.http.post(this.url + 'subjects', subjectToCreate);
   }
 }
