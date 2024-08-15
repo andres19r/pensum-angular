@@ -1,1 +1,77 @@
-<p>create-subject works!</p>
+<h3>Add Semester</h3>
+<form [formGroup]="subjectForm">
+  <!-- code -->
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Code</mat-label>
+      <input matInput placeholder="CAL-115" formControlName="code" />
+    </mat-form-field>
+  </p>
+
+  <!-- name -->
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Calculo I" formControlName="name" />
+    </mat-form-field>
+  </p>
+
+  <!-- state -->
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>State</mat-label>
+      <mat-select formControlName="state">
+        <mat-option
+          *ngFor="let option of ['Approved', 'Reproved', 'In progress']"
+          value="option"
+          >{{ option }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+  </p>
+
+  <!-- Score -->
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Score</mat-label>
+      <input
+        class="score-input"
+        type="number"
+        matInput
+        placeholder="50"
+        formControlName="score"
+      />
+    </mat-form-field>
+  </p>
+
+  <!-- prerequisite -->
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Prerequisite</mat-label>
+      <input matInput placeholder="CAL-115" formControlName="prerequisite" />
+    </mat-form-field>
+  </p>
+
+  <!-- semester -->
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Semester</mat-label>
+      <mat-select formControlName="semester">
+        <mat-option
+          *ngFor="let option of [1, 2, 3, 4, 5, 6, 7, 8]"
+          value="option"
+          >{{ option }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+  </p>
+
+  <button
+    [disabled]="subjectForm.invalid"
+    mat-raised-button
+    color="primary"
+    type="submit"
+  >
+    Add
+  </button>
+</form>
