@@ -5,11 +5,12 @@ import { CommonModule } from '@angular/common';
 import { SemesterComponent } from '../semester/semester.component';
 import { Semester } from '../../interfaces/semester.interface';
 import { Observable } from 'rxjs';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, SemesterComponent],
+  imports: [CommonModule, SemesterComponent, MatButtonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })

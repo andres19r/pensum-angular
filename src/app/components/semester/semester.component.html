@@ -1,8 +1,5 @@
 <div class="semester-container">
   <h3>Semester {{ semester.num }}</h3>
-  <button mat-raised-button color="primary" (click)="addSubject()">
-    Add Subject
-  </button>
 
   <table mat-table [dataSource]="semester.subjects" class="mat-elevation-z8">
     <!-- Code Column -->
