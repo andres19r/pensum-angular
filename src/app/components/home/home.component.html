@@ -1,6 +1,6 @@
 <h1>Pensum Tracker</h1>
 <section class="buttons">
-  <button mat-raised-button>Add Subject</button>
+  <button mat-raised-button (click)="openCreateSubjectDialog()">Add Subject</button>
 </section>
 <ng-container *ngFor="let semester of $semesters | async">
   <app-semester [semester]="semester"></app-semester>
