@@ -7,7 +7,7 @@ import { Semester } from '../../interfaces/semester.interface';
 import { Observable } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { CreateSubjectComponent } from '../../componets/create-subject/create-subject.component';
+import { CreateSubjectComponent } from '../create-subject/create-subject.component';
 
 @Component({
   selector: 'app-home',
