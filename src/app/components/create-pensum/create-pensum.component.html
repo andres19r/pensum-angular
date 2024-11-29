@@ -1,0 +1,28 @@
+<h3 mat-dialog-title>Create Pensum</h3>
+<form [formGroup]="pensumForm" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+
+    <!-- University -->
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>University</mat-label>
+        <input matInput formControlName="university"/>
+      </mat-form-field>
+    </p>
+
+    <!-- Career -->
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Career</mat-label>
+        <input matInput formControlName="career"/>
+      </mat-form-field>
+    </p>
+
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button [mat-dialog-close]="true" [disabled]="pensumForm.invalid" mat-raised-button color="primary" type="submit">
+      Create
+    </button>
+
+  </mat-dialog-actions>
+</form>
