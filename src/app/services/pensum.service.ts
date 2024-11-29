@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { Pensum } from '../interfaces/pensum.interface';
-import { Semester } from '../interfaces/semester.interface';
+import { Observable } from 'rxjs';
+import { CreateSemester, Pensum, Semester, Subject } from '../interfaces';
 import { environment } from '../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from '../interfaces/subject.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +14,10 @@ export class PensumService {
 
   getPensum(): Observable<Pensum> {
     return this.http.get<Pensum>(this.url + 'pensum');
+  }
+
+  createPensum(newPensum: CreateSemester): Observable<Pensum> {
+    return this.http.post<Pensum>(this.url + 'pensum', newPensum);
   }
 
   getAllSemesters(): Observable<Semester[]> {
