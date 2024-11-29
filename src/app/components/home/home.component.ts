@@ -3,11 +3,12 @@ import { Pensum, Semester } from '../../interfaces';
 import { PensumService } from '../../services/pensum.service';
 import { CommonModule } from '@angular/common';
 import { SemesterComponent } from '../semester/semester.component';
-import { Observable } from 'rxjs';
+import {lastValueFrom, Observable} from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CreateSubjectComponent } from '../create-subject/create-subject.component';
 import { PensumTableComponent } from '../pensum-table/pensum-table.component';
+import { CreatePensumComponent } from '../create-pensum/create-pensum.component';
 
 @Component({
   selector: 'app-home',
@@ -23,7 +24,7 @@ import { PensumTableComponent } from '../pensum-table/pensum-table.component';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
-  private readonly _pensumService = inject(PensumService);
+  private readonly pensumService = inject(PensumService);
   private dialog = inject(MatDialog);
 
   $pensum: Observable<Pensum> = new Observable<Pensum>();
@@ -32,8 +33,18 @@ export class HomeComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.$pensum = this._pensumService.getPensum();
-    this.$semesters = this._pensumService.getAllSemesters();
+    this.$pensum = this.pensumService.getPensum();
+    this.$semesters = this.pensumService.getAllSemesters();
+  }
+
+   openCreatePensumDialog(): void {
+    const dialogRef = this.dialog.open(CreatePensumComponent);
+    dialogRef.afterClosed().subscribe(async (newPensum) => {
+      if (newPensum) {
+        const pensumCreated = await lastValueFrom(this.pensumService.createPensum(newPensum));
+        console.log(pensumCreated);
+      }
+    })
   }
 
   openCreateSubjectDialog() {
