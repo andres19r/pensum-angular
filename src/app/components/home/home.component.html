@@ -9,8 +9,9 @@
   </button>
 </section>
 
-<ng-container *ngFor="let semester of $semesters | async">
-  <app-semester [semester]="semester"></app-semester>
-</ng-container>
+@if (pensum()) {
+  <h2>University: {{ pensum()?.university | titlecase }}</h2>
+  <h3>Career: {{ pensum()?.career | titlecase }}</h3>
+}
 
-<app-pensum-table/>
+<app-pensum-table [dataSource]="subjects()"/>

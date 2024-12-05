@@ -1,9 +1,15 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { Pensum, Semester } from '../../interfaces';
+import {
+  Component,
+  inject,
+  OnInit,
+  signal,
+  WritableSignal,
+} from '@angular/core';
+import {Pensum, Semester, Subject} from '../../interfaces';
 import { PensumService } from '../../services/pensum.service';
 import { CommonModule } from '@angular/common';
 import { SemesterComponent } from '../semester/semester.component';
-import {lastValueFrom, Observable} from 'rxjs';
+import { lastValueFrom, Observable } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CreateSubjectComponent } from '../create-subject/create-subject.component';
@@ -15,7 +21,6 @@ import { CreatePensumComponent } from '../create-pensum/create-pensum.component'
   standalone: true,
   imports: [
     CommonModule,
-    SemesterComponent,
     MatButtonModule,
     MatDialogModule,
     PensumTableComponent,
@@ -26,25 +31,27 @@ import { CreatePensumComponent } from '../create-pensum/create-pensum.component'
 export class HomeComponent implements OnInit {
   private readonly pensumService = inject(PensumService);
   private dialog = inject(MatDialog);
+  pensum = signal<Pensum | null>(null)
+  subjects = signal<Subject[]>([]);
 
-  $pensum: Observable<Pensum> = new Observable<Pensum>();
-  $semesters: Observable<Semester[]> = new Observable<Semester[]>();
 
   constructor() {}
 
-  ngOnInit(): void {
-    this.$pensum = this.pensumService.getPensum();
-    this.$semesters = this.pensumService.getAllSemesters();
+  async ngOnInit(): Promise<void> {
+    this.pensum = signal(await lastValueFrom(this.pensumService.getPensum()))
+    this.subjects = signal(await lastValueFrom(this.pensumService.getAllSubjects()))
   }
 
-   openCreatePensumDialog(): void {
+  openCreatePensumDialog(): void {
     const dialogRef = this.dialog.open(CreatePensumComponent);
     dialogRef.afterClosed().subscribe(async (newPensum) => {
       if (newPensum) {
-        const pensumCreated = await lastValueFrom(this.pensumService.createPensum(newPensum));
-        console.log(pensumCreated);
+        const pensumCreated = await lastValueFrom(
+          this.pensumService.createPensum(newPensum),
+        );
+        this.pensum.set(pensumCreated);
       }
-    })
+    });
   }
 
   openCreateSubjectDialog() {
