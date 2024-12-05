@@ -1,15 +1,8 @@
-import {
-  Component,
-  inject,
-  OnInit,
-  signal,
-  WritableSignal,
-} from '@angular/core';
-import {Pensum, Semester, Subject} from '../../interfaces';
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { Pensum, Subject } from '../../interfaces';
 import { PensumService } from '../../services/pensum.service';
 import { CommonModule } from '@angular/common';
-import { SemesterComponent } from '../semester/semester.component';
-import { lastValueFrom, Observable } from 'rxjs';
+import { lastValueFrom } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CreateSubjectComponent } from '../create-subject/create-subject.component';
@@ -31,15 +24,16 @@ import { CreatePensumComponent } from '../create-pensum/create-pensum.component'
 export class HomeComponent implements OnInit {
   private readonly pensumService = inject(PensumService);
   private dialog = inject(MatDialog);
-  pensum = signal<Pensum | null>(null)
+  pensum = signal<Pensum | null>(null);
   subjects = signal<Subject[]>([]);
-
 
   constructor() {}
 
   async ngOnInit(): Promise<void> {
-    this.pensum = signal(await lastValueFrom(this.pensumService.getPensum()))
-    this.subjects = signal(await lastValueFrom(this.pensumService.getAllSubjects()))
+    this.pensum = signal(await lastValueFrom(this.pensumService.getPensum()));
+    this.subjects = signal(
+      await lastValueFrom(this.pensumService.getAllSubjects()),
+    );
   }
 
   openCreatePensumDialog(): void {

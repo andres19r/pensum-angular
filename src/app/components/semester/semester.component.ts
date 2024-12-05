@@ -24,12 +24,11 @@ export class SemesterComponent {
 
   addSubject() {
     const mockSubjectToCreate: Subject = {
-      code: 'CAL-115',
       name: 'Calculo III',
       state: 'Approved',
       score: 68,
-      prerequisite: 'none',
       semester: 3,
+      pensumId: ''
     };
     this._pensumService
       .createSubject(mockSubjectToCreate)

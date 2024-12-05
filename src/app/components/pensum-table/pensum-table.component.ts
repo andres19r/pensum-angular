@@ -1,5 +1,6 @@
 import { Component, input } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
+import {Subject} from "../../interfaces";
 
 @Component({
   selector: 'app-pensum-table',
@@ -10,5 +11,5 @@ import { MatTableModule } from '@angular/material/table';
 })
 export class PensumTableComponent {
   displayedColumns: string[] = ['name', 'state', 'semester', 'score'];
-  dataSource = input<string[]>([]);
+  dataSource = input.required<Subject[]>();
 }

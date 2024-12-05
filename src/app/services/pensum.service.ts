@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CreateSemester, Pensum, Semester, Subject } from '../interfaces';
+import { CreateSemester, Pensum, Subject } from '../interfaces';
 import { environment } from '../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 
@@ -24,7 +24,7 @@ export class PensumService {
     return this.http.get<Subject[]>(this.url + 'subjects');
   }
 
-  getSubjectById(id: number): Observable<Subject> {
+  getSubjectById(id: string): Observable<Subject> {
     return this.http.get<Subject>(this.url + `subjects/${id}`);
   }
 
