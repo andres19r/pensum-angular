@@ -20,12 +20,12 @@ export class PensumService {
     return this.http.post<Pensum>(this.url + 'pensum', newPensum);
   }
 
-  getAllSemesters(): Observable<Semester[]> {
-    return this.http.get<Semester[]>(this.url + 'semesters');
+  getAllSubjects(): Observable<Subject[]> {
+    return this.http.get<Subject[]>(this.url + 'subjects');
   }
 
-  getSemesterById(id: number): Observable<Semester> {
-    return this.http.get<Semester>(this.url + `semesters/${id}`);
+  getSubjectById(id: number): Observable<Subject> {
+    return this.http.get<Subject>(this.url + `subjects/${id}`);
   }
 
   createSubject(subjectToCreate: Subject) {

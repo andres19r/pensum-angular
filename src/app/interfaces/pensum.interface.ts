@@ -9,3 +9,4 @@ export interface Pensum extends CreateSemester {
   id: number;
   semesters: Semester[];
 }
+

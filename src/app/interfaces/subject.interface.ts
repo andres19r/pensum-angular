@@ -1,10 +1,9 @@
 export interface Subject {
-  code: string;
   name: string;
   state: SubjectState;
-  score?: number;
-  prerequisite?: string;
   semester: number;
+  score?: number;
+  pensumId: string;
 }
 
 export type SubjectState = 'Approved' | 'Reproved' | 'In progress';
