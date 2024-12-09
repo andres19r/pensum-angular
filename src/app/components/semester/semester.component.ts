@@ -1,8 +1,8 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { PensumService } from '../../services/pensum.service';
-import { Semester, Subject } from '../../interfaces';
+import { Semester, Subject, SubjectState } from '../../interfaces';
 
 @Component({
   selector: 'app-semester',
@@ -25,10 +25,10 @@ export class SemesterComponent {
   addSubject() {
     const mockSubjectToCreate: Subject = {
       name: 'Calculo III',
-      state: 'Approved',
+      state: SubjectState.approved,
       score: 68,
       semester: 3,
-      pensumId: ''
+      pensumId: '',
     };
     this._pensumService
       .createSubject(mockSubjectToCreate)

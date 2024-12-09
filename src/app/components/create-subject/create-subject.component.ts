@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
+import {SubjectState} from "../../interfaces";
 
 @Component({
   selector: 'app-create-subject',
@@ -23,12 +24,11 @@ import { MatDialogModule } from '@angular/material/dialog';
   styleUrl: './create-subject.component.scss',
 })
 export class CreateSubjectComponent {
+  subjectStates = [...Object.values(SubjectState)];
   subjectForm = this.formBuilder.group({
-    code: ['', Validators.required],
     name: ['', Validators.required],
     state: ['', Validators.required],
-    score: [50],
-    prerequisite: [''],
+    score: [undefined],
     semester: [1, Validators.required],
   });
 

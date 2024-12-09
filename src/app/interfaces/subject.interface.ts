@@ -6,4 +6,9 @@ export interface Subject {
   pensumId: string;
 }
 
-export type SubjectState = 'Approved' | 'Reproved' | 'In progress';
+export enum SubjectState {
+  approved = "APPROVED",
+  inProgress = "IN PROGRESS",
+  pending = "PENDING",
+  reproved = "REPROVED",
+}
