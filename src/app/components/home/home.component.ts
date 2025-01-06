@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { Pensum, Subject } from '../../interfaces';
+import { Pensum, Subject, SubjectState } from '../../interfaces';
 import { PensumService } from '../../services/pensum.service';
 import { CommonModule } from '@angular/common';
 import { lastValueFrom } from 'rxjs';
@@ -28,6 +28,18 @@ export class HomeComponent implements OnInit {
   subjects = signal<Subject[]>([]);
 
   constructor() {}
+
+  get totalSubjects(): number {
+    return this.subjects().length;
+  }
+
+  get approvedSubjects(): number {
+    return this.subjects().filter(subject => subject.state === SubjectState.approved).length;
+  }
+
+  get pendingSubjects(): number {
+    return this.subjects().filter(subject => subject.state === SubjectState.pending).length;
+  }
 
   async ngOnInit(): Promise<void> {
     this.pensum = signal(await lastValueFrom(this.pensumService.getPensum()));

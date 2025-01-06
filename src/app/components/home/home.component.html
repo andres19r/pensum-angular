@@ -12,6 +12,9 @@
 @if (pensum()) {
   <h2>University: {{ pensum()?.university | titlecase }}</h2>
   <h3>Career: {{ pensum()?.career | titlecase }}</h3>
+  <h4>Total subjects: {{totalSubjects}}</h4>
+  <h4>Approved subjects: {{approvedSubjects}}</h4>
+  <h4>Pending subjects: {{pendingSubjects}}</h4>
 }
 
 <app-pensum-table [dataSource]="subjects()"/>
