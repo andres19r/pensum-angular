@@ -48,7 +48,19 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  openCreateSubjectDialog() {
+  async openCreateSubjectDialog() {
     const dialogRef = this.dialog.open(CreateSubjectComponent);
+
+    dialogRef.afterClosed().subscribe(async (newSubject: Subject) => {
+      if (newSubject && this.pensum()) {
+        await lastValueFrom(
+          this.pensumService.createSubject({
+            ...newSubject,
+            pensumId: this.pensum()!._id,
+          }),
+        );
+        this.subjects.update((subjects) => [...subjects, newSubject]);
+      }
+    });
   }
 }

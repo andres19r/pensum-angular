@@ -6,7 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
-import {SubjectState} from "../../interfaces";
+import { SubjectState } from '../../interfaces';
 
 @Component({
   selector: 'app-create-subject',

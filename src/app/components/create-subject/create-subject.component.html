@@ -15,7 +15,7 @@
       <mat-form-field appearance="outline">
         <mat-label>State</mat-label>
         <mat-select formControlName="state">
-          <mat-option *ngFor="let option of subjectStates" value="option">{{
+          <mat-option *ngFor="let option of subjectStates" [value]="option">{{
               option
             }}
           </mat-option>
@@ -37,7 +37,7 @@
         <mat-label>Semester</mat-label>
         <mat-select formControlName="semester">
           @for (option of [1, 2, 3, 4, 5, 6, 7, 8]; track option) {
-            <mat-option value="option">{{ option }}</mat-option>
+            <mat-option [value]="option">{{ option }}</mat-option>
           }
         </mat-select>
       </mat-form-field>
@@ -47,7 +47,8 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-raised-button mat-dialog-close="">Close</button>
-  <button [mat-dialog-close]="true" [disabled]="subjectForm.invalid" mat-raised-button color="primary" type="submit">
+  <button [mat-dialog-close]="subjectForm.value" [disabled]="subjectForm.invalid" mat-raised-button color="primary"
+          type="submit">
     Add
   </button>
 

@@ -6,7 +6,6 @@ export interface CreateSemester {
 }
 
 export interface Pensum extends CreateSemester {
-  id: number;
+  _id: string;
   semesters: Semester[];
 }
-
